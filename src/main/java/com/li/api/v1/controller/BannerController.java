@@ -1,18 +1,26 @@
 package com.li.api.v1.controller;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import com.li.api.pojo.model.Banner;
+import com.li.api.service.BannerServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
+
 
 /**
  * @author 黎源
  * @date 2020/11/3 18:48
  */
-@Controller
+@RestController
+@RequestMapping("/v1/banner")
+@Validated
 public class BannerController {
-    @GetMapping("/text")
-    @ResponseBody
-    public String getInfo() {
-        return "黎某";
+
+    @Autowired
+    private BannerServiceImpl bannerService;
+
+    @GetMapping("/name/{name}")
+    public Banner getInfo(@PathVariable String name) {
+        return bannerService.getBanner(name);
     }
 }
