@@ -16,6 +16,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Positive;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,15 +41,27 @@ public class SpuController {
         if(spu == null){
             throw new NotFoundException(30002);
         }
+
         return spu;
     }
 
     @GetMapping("/latest")
-    public PaggingDozer getDetail(@RequestParam(name = "start", defaultValue = "0") Integer start,
+    public PaggingDozer getSpuListAll(@RequestParam(name = "start", defaultValue = "0") Integer start,
                                   @RequestParam(name = "count", defaultValue = "10") Integer count) {
         PageCounter pageCounter = CommonUtil.convertToPageParameter(start, count);
         Page<Spu> page = service.getSpuLatestPagging(pageCounter.getPageNumber(), pageCounter.getSize());
         PaggingDozer<Spu, SpuSimpleLifyVo> paggingDozer = new PaggingDozer<>(page,SpuSimpleLifyVo.class);
+        return paggingDozer;
+    }
+
+    @RequestMapping("/by/category/{id}")
+    public PaggingDozer<Spu,SpuSimpleLifyVo> getSpuListAllByCategoryId(@Positive @PathVariable(name = "id") Long id,
+                                          @RequestParam(name = "is_root",defaultValue = "false")Boolean isRoot,
+                                          @RequestParam(name = "start",defaultValue = "0")Integer start,
+                                          @RequestParam(name = "count",defaultValue = "2")Integer count) {
+        PageCounter pageCounter = CommonUtil.convertToPageParameter(start, count);
+        Page<Spu> page = service.getSpuByCategoryId(id,isRoot,pageCounter);
+        PaggingDozer paggingDozer = new PaggingDozer(page, SpuSimpleLifyVo.class);
         return paggingDozer;
     }
 }

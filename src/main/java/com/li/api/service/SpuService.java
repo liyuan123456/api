@@ -1,5 +1,6 @@
 package com.li.api.service;
 
+import com.li.api.pojo.bo.PageCounter;
 import com.li.api.pojo.model.Spu;
 import org.springframework.data.domain.Page;
 
@@ -13,4 +14,6 @@ public interface SpuService {
     Spu getDetail(Long id);
 
     Page<Spu> getSpuLatestPagging(Integer pageNumber,Integer size);
+
+    Page<Spu> getSpuByCategoryId(Long cid, Boolean isRoot, PageCounter pageCounter);
 }

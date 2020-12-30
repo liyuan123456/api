@@ -88,6 +88,7 @@ public class GlobalExceptionAdvice {
                 .build();
     }
 
+
     private String formatAllErrorsToMessageBySet(Set<? extends ConstraintViolation> errors) {
         StringBuffer message = new StringBuffer();
         errors.forEach(error -> {

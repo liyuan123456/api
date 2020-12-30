@@ -1,12 +1,10 @@
 package com.li.api.pojo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 /**
@@ -34,15 +32,16 @@ public class Spu extends BaseEntity {
     private Boolean isTest;
     private String forThemeImg;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "spuId")
-    private List<SpuImg> spuImgs;
+    private List<SpuImg> spuImgList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "spuId")
-    private List<SpuDetailImg> spuDetailImgs;
+    private List<SpuDetailImg> spuDetailImgList;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     @JoinColumn(name = "spuId")
-    private List<Sku> skus;
+    private List<Sku> skuList;
+
 }

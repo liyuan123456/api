@@ -1,5 +1,6 @@
 package com.li.api.v1.controller;
 
+import com.li.api.core.interceptors.ScopeLevel;
 import com.li.api.pojo.model.Banner;
 import com.li.api.service.BannerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ public class BannerController {
     private BannerServiceImpl bannerService;
 
     @GetMapping("/name/{name}")
+//    @ScopeLevel()
     public Banner getInfo(@PathVariable String name) {
         return bannerService.getBanner(name);
     }

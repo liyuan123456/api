@@ -12,4 +12,10 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-
+wx:
+  appid: wxcb63cd6672e7dfe1
+  secret: 4a51d7faa50b96cf6bf25a462e7a2bb5
+  url: https://api.weixin.qq.com/sns/jscode2session?appid={0}&secret={1}&js_code={2}&grant_type=authorization_code
+myjwt:
+  secret: limouren
+  timeout: 86400000

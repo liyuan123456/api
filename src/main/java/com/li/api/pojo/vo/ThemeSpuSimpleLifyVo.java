@@ -5,19 +5,23 @@ import lombok.Setter;
 
 /**
  * @author 黎源
- * @date 2020/12/2 15:09
+ * @date 2020/12/13 19:16
  */
+
 @Getter
 @Setter
-public class SpuSimpleLifyVo {
-    private Long id;
+public class ThemeSpuSimpleLifyVo {
+    private long id;
     private String title;
     private String subtitle;
+    private long categoryId;
+    private long rootCategoryId;
+    private String price;
     private String img;
     private String forThemeImg;
-    private String price;
-    private String discountPrice;
     private String description;
+    private String discountPrice;
     private String tags;
-    private long sketchSpecId;
+    private Boolean isTest;
+    private Boolean online;
 }
