@@ -19,3 +19,7 @@ wx:
 myjwt:
   secret: limouren
   timeout: 86400000
+conventional:
+  max-buy: 999
+  year-codes: A,B,C,D,E,F,G,H,I,J,K,L
+

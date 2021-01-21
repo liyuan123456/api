@@ -1,7 +1,9 @@
 package com.li.api.pojo.vo;
 
+import com.li.api.pojo.model.Category;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
 /**
  * @author 黎源
@@ -16,4 +18,8 @@ public class CategoryVo {
     private Long parentId;
     private String img;
     private Byte index;
+
+    public CategoryVo(Category category){
+        BeanUtils.copyProperties(category,this);
+    }
 }
