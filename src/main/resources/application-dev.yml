@@ -2,7 +2,7 @@ server:
   port: 8080
 spring:
   datasource:
-    url:  jdbc:mysql://localhost:3306/sleeve?characterEncoding=utf8&serverTimezone=GMT%2B8
+    url: jdbc:mysql://localhost:3306/sleeve?characterEncoding=utf8&serverTimezone=GMT%2B8
     username: root
     password: root
   jpa:
@@ -12,6 +12,11 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+  redis:
+    host: localhost
+    port: 6379
+    database: 7
+    listen-pattern: __keyevent@7__:expired
 wx:
   appid: wxcb63cd6672e7dfe1
   secret: 4a51d7faa50b96cf6bf25a462e7a2bb5
@@ -22,4 +27,4 @@ myjwt:
 conventional:
   max-buy: 999
   year-codes: A,B,C,D,E,F,G,H,I,J,K,L
-
+  pay-time-limit: 1800
