@@ -4,6 +4,8 @@ import com.li.api.pojo.model.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Date;
@@ -26,4 +28,11 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
     Page<Order> findByUserIdAndStatus(Long uid, Integer status, Pageable pageable);
 
     Optional<Order> findByUserIdAndId(Long uid, Long id);
+
+    @Modifying
+    @Query(nativeQuery = true,value = "UPDATE `order` " +
+            "SET `status` = 5 " +
+            "WHERE `status` = 1 " +
+            "AND id = ?")
+    int cancelOrder(Long oid);
 }

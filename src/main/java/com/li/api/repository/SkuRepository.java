@@ -26,4 +26,10 @@ public interface SkuRepository extends JpaRepository<Sku, Long> {
             "WHERE s.id = :sid " +
             "AND s.stock >= :quantity ")
     int reduceStock(@Param(value = "sid") Long sid,@Param(value = "quantity") Long quantity);
+
+    @Modifying
+    @Query(nativeQuery = true,value = "UPDATE sku " +
+            "SET stock = stock + (:quantity) " +
+            "WHERE id = :sid")
+    int backStock(@Param(value = "sid") Long sid, @Param(value = "quantity") Long quantity);
 }

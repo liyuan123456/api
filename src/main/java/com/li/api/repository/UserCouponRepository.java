@@ -29,4 +29,13 @@ public interface UserCouponRepository extends JpaRepository<UserCoupon, Long> {
     int writeOff(@Param(value = "uid") Long uid,
                  @Param(value = "oid") Long oid,
                  @Param(value = "couponId") Long couponId);
+
+    @Modifying
+    @Query(nativeQuery = true,value = "UPDATE user_coupon " +
+            "SET `status` = 1,order_id = null " +
+            "WHERE user_id = ?1  " +
+            "AND coupon_id = ?2 " +
+            "AND `status` = 2 " +
+            "AND order_id IS NOT NULL")
+    int backCoupon(Long uid, Long cid);
 }
